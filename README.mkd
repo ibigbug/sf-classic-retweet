@@ -4,7 +4,12 @@ Classic Retweet
 
 ## Introduction
 Good news for __Safari__ and __Twitter__ users!
-An addon enables Classi Style Retweet for [Offical Twitter](https://twitter.com)
+
+An addon enables Classic Style Retweet for [Offical Twitter](https://twitter.com)
+
+## Installation
+
+Download [sf-classic-retweet.safariextz](https://raw.githubusercontent.com/ibigbug/sf-classic-retweet/master/sf-classic-retweet.safariextz) above && double click.
 
 ## TODO
 - [x] Fix `parentUntilClass()`
