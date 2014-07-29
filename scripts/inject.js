@@ -7,17 +7,14 @@ document.addEventListener('DOMContentLoaded', function(){
     function $(id) {return document.getElementById(id);}
     function $$(cls) {return document.getElementsByClassName(cls);}
     function parentUntilClass(node, cls) {
-      if (node == document)
-        return document;
-      if (!node.parentNode)
-        return document;
-      if (!node.parentNode.classList) {
-        console.log(node.parentNode);
-        return parentUntilClass(node.parentNode, cls);
-      }
-      if (node.parentNode.classList.contains(cls))
-        return node.parentNode;
-      return parentUntilClass(node.parentNode, cls);
+      if (!node)
+        return null;
+      var ret = node.parentNode;
+      if (ret && ret.nodeType !== 9)
+        if (ret.nodeType === 1)
+          if (ret.classList.contains(cls))
+              return ret;
+        return parentUntilClass(ret, cls);
     }
     function domify(str) {
       // not safe
@@ -43,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }, false);
     
     document.body.addEventListener('click', function (event) {
-      if (event.target && parentUntilClass(event.target, QUOTE_CLASS).classList.contains(QUOTE_CLASS)) {
+      if (event.target && parentUntilClass(event.target, QUOTE_CLASS) && parentUntilClass(event.target, QUOTE_CLASS).classList.contains(QUOTE_CLASS)) {
         var target = event.target;
         $('global-new-tweet-button').click();
         $('global-tweet-dialog-header').innerHTML = 'Quote Retweet';
