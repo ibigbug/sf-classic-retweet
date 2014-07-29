@@ -9,4 +9,5 @@ An addon enables Classi Style Retweet for [Offical Twitter](https://twitter.com)
 ## TODO
 - [x] Fix `parentUntilClass()`
 - [x] move cursor to zero
-- [ ] enable profile page & conversation page
+- [x] enable profile page & conversation page
+- [ ] profile style
