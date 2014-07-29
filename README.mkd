@@ -1,3 +1,7 @@
 sf-classic-retweet
 ------
-> not working now.
+> not working well now.
+
+# TODO
+* Fix `parentUntilClass()`
+* move cursor to zero
