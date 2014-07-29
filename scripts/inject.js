@@ -28,12 +28,12 @@ document.addEventListener('DOMContentLoaded', function(){
       '<b>Quote RT</b>',
       '</li>'].join('');
     document.body.addEventListener('mousemove', function (event) {
-      if (event.target && event.target.classList.contains('tweet')) {
+      if (event.target && (event.target.classList.contains('js-stream-tweet') || event.target.classList.contains('opened-tweet'))) {
         var target = event.target;
-        var container = target.getElementsByClassName('tweet-actions')[0];
+        var container = target.getElementsByClassName('js-actions')[0];
         if (container.getElementsByClassName(QUOTE_CLASS).length > 0)
           return;
-        var ref = container.getElementsByClassName('action-fav-container')[0];
+        var ref = container.getElementsByClassName('js-toggle-fav')[0];
         var quoteBtn = domify(btnStr);
         container.insertBefore(quoteBtn, ref);
       }
@@ -44,9 +44,16 @@ document.addEventListener('DOMContentLoaded', function(){
         var target = event.target;
         $('global-new-tweet-button').click();
         $('global-tweet-dialog-header').innerHTML = 'Quote Retweet';
-        var parent = parentUntilClass(target, 'content');
-        var username = parent.getElementsByClassName('username')[0].getElementsByTagName('b')[0].innerHTML;
-        var text = parent.getElementsByClassName('tweet-text')[0].innerHTML;
+        var parent = parentUntilClass(target, 'js-stream-tweet');
+        if (!parent)
+          parent = parentUntilClass(target, 'opened-tweet');
+        var username;
+        try {
+          username = parent.getElementsByClassName('username')[0].getElementsByTagName('b')[0].innerHTML;
+        } catch (e) {
+          username = location.pathname.substr(1);
+        }
+        var text = parent.getElementsByClassName('js-tweet-text')[0].innerHTML;
         text = 'RT @' + username + ': ' + text;
         var editable = $('tweet-box-global').childNodes[0];
         editable.innerHTML = text;
