@@ -47,9 +47,20 @@ document.addEventListener('DOMContentLoaded', function(){
         var parent = parentUntilClass(target, 'content');
         var username = parent.getElementsByClassName('username')[0].getElementsByTagName('b')[0].innerHTML;
         var text = parent.getElementsByClassName('tweet-text')[0].innerHTML;
-        text = 'RT @' + username + ':' + text;
-        $('tweet-box-global').childNodes[0].innerHTML = text;
+        text = 'RT @' + username + ': ' + text;
+        var editable = $('tweet-box-global').childNodes[0];
+        editable.innerHTML = text;
+        cursorToStart(editable);
       }
     }, true);
+
+    function cursorToStart(node) {
+      var range = document.createRange();
+      range.setStart(node, 0);
+      range.setEnd(node, 0);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
   })(window, document);
 });
