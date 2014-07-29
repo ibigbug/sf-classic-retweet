@@ -49,5 +49,9 @@
 			<string>Some</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://static.xiaoba.me/sf-classic-retweet.safariextz</string>
+	<key>Website</key>
+	<string>http://blog.xiaoba.me</string>
 </dict>
 </plist>

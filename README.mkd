@@ -1,7 +1,12 @@
-sf-classic-retweet
+Classic Retweet
 ------
-> not working well now.
+> working well now.
 
-# TODO
-* <del> Fix `parentUntilClass()`</del>
-* move cursor to zero
+## Introduction
+Good news for __Safari__ and __Twitter__ users!
+An addon enables Classi Style Retweet for [Offical Twitter](https://twitter.com)
+
+## TODO
+- [x] Fix `parentUntilClass()`
+- [x] move cursor to zero
+- [ ] test units
