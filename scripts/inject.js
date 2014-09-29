@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     var btnStr = [
       '<li class=' + QUOTE_CLASS + '>',
-      '<a role="button" class="with=icn js-action-quote" href="#">',
+      '<a role="button" class="with=icn js-action-quote" href="javascript:;">',
       '<span class="Icon Icon--reply"></span>',
       '<b>Quote RT</b>',
       '</li>'].join('');
