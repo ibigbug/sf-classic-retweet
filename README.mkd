@@ -12,7 +12,6 @@ An addon enables Classic Style Retweet for [Offical Twitter](https://twitter.com
 Download [sf-classic-retweet.safariextz](https://raw.githubusercontent.com/ibigbug/sf-classic-retweet/master/sf-classic-retweet.safariextz) above && double click.
 
 ## TODO
-- [x] Fix `parentUntilClass()`
 - [x] move cursor to zero
 - [x] enable profile page & conversation page
-- [ ] profile style
+- [x] profile style
