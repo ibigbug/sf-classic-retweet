@@ -21,26 +21,31 @@ document.addEventListener('DOMContentLoaded', function(){
       temp.innerHTML = str;
       return temp.firstChild;
     }
-    var btnStr = [
-      '<li class=' + QUOTE_CLASS + '>',
-      '<a role="button" class="with=icn js-action-quote" href="javascript:;">',
-      '<span class="Icon Icon--reply"></span>',
-      '<b>Quote RT</b>',
-      '</li>'].join('');
+
+    function generateClonedButton() {
+      var btnCloned = $$('ProfileTweet-actionList')[0].getElementsByClassName('ProfileTweet-action--reply')[0].cloneNode(1);
+      var domStr = btnCloned.innerHTML;
+      domStr = domStr.replace(/reply/gi, 'quote');
+      btnCloned.innerHTML = domStr;
+      btnCloned.classList.remove('ProfileTweet-action--reply');
+      btnCloned.classList.add(QUOTE_CLASS);
+      btnCloned.getElementsByClassName('ProfileTweet-actionButton')[0].innerHTML = '<span class="Icon Icon--reply"></span><b>RT</b>';
+      return btnCloned;
+    }
     document.body.addEventListener('mousemove', function (event) {
-      if (event.target && (event.target.classList.contains('js-stream-tweet') || event.target.classList.contains('opened-tweet'))) {
-        var target = event.target;
-        var container = target.getElementsByClassName('js-actions')[0];
-        if (container.getElementsByClassName(QUOTE_CLASS).length > 0)
-          return;
-        var ref = container.getElementsByClassName('js-toggle-fav')[0];
-        var quoteBtn = domify(btnStr);
-        container.insertBefore(quoteBtn, ref);
-      }
-    }, false);
+      var target = event.target;
+      if (!target.getElementsByClassName('js-actions').length)
+        return;
+      var container = target.getElementsByClassName('js-actions')[0];
+      if (container.getElementsByClassName(QUOTE_CLASS).length > 0)
+        return;
+      var ref = container.getElementsByClassName('js-toggle-fav')[0];
+      container.insertBefore(generateClonedButton(), ref);
+    }, true);
     
     document.body.addEventListener('click', function (event) {
       if (event.target && parentUntilClass(event.target, QUOTE_CLASS) && parentUntilClass(event.target, QUOTE_CLASS).classList.contains(QUOTE_CLASS)) {
+        event.preventDefault();
         var target = event.target;
         $('global-new-tweet-button').click();
         $('global-tweet-dialog-header').innerHTML = 'Quote Retweet';
